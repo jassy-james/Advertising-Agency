@@ -1,0 +1,12 @@
+INSERT INTO CLIENT (CLIENT_ID, NAME, PATRONYMIC, SURNAME, INFO) VALUES (1, 'Виталий', 'Станиславович', 'Садковский', 'skype: daveyjones30');
+INSERT INTO CLIENT (CLIENT_ID, NAME, PATRONYMIC, SURNAME, INFO) VALUES (2, 'Илья', 'Александрович', 'Полудницын', 'skype: ilyaizya');
+INSERT INTO CLIENT (CLIENT_ID, NAME, PATRONYMIC, SURNAME, INFO) VALUES (3, 'Евгений', 'Сергеевич', 'Турков', 'skype: jeka0102');
+
+INSERT INTO EMPLOYEE (EMPLOYEE_ID, NAME, PATRONYMIC, SURNAME, PHONE_NUMBER, POST) VALUES (1, 'Александр', 'Игоревич', 'Галкин', '88002000600', 'Арт-директор');
+
+INSERT INTO ORDERS (ORDER_ID, STATUS, CLIENT_ID, EMPLOYEE_ID) VALUES (1, 'не готов', 1, 1);
+INSERT INTO ORDERS (ORDER_ID, STATUS, CLIENT_ID, EMPLOYEE_ID) VALUES (2, 'не готов', 2, 1);
+INSERT INTO ORDERS (ORDER_ID, STATUS, CLIENT_ID, EMPLOYEE_ID) VALUES (3, 'не готов', 3, 1);
+INSERT INTO PRODUCT (PRODUCT_ID, COST, DESCRIPTION, NAME, ORDER_ID) VALUES (1, 5000, 'Корректировка макета', 'Корректировка', 1);
+INSERT INTO PRODUCT (PRODUCT_ID, COST, DESCRIPTION, NAME, ORDER_ID) VALUES (2, 10000, 'Разработка дизайна', 'Дизайн', 1);
+INSERT INTO PRODUCT (PRODUCT_ID, COST, DESCRIPTION, NAME, ORDER_ID) VALUES (3, 7000, 'Разработка слогана', 'Слоган', 2);

@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url(../fonts/RobotoSlab-Bold.ttf);
+  src: url(../fonts/RobotoSlab-Light.ttf);
+  src: url(../fonts/RobotoSlab-Regular.ttf);
+  /* src: url(../fonts/RobotoSlab-Thin.ttf); */
+}

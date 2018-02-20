@@ -1,0 +1,15 @@
+.name-product, .description-product, .price-product {
+  font-weight: bold;
+}
+
+.name {
+  margin-left: 20px;
+}
+
+.description {
+  margin-left: 20px;
+}
+
+.price {
+  margin-left: 20px;
+}

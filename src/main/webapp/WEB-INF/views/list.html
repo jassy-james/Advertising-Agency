@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AgencyApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Учет заказов в рекламном агентстве</title>
+  <link rel="shortcut icon" href="/resources/img/ico.png" type="image/png">
+  <script src="/resources/libs/js/pdfmake.min.js"></script>
+  <script src="/resources/libs/js/vfs_fonts.js"></script>
+  <script src="/resources/libs/js/angular.js"></script>
+  <script src="/resources/libs/js/jquery-2.1.0.js"></script>
+  <script src="/resources/libs/js/bootstrap.min.js"></script>
+  <script src="/resources/js/jquery-scripts.js"></script>
+  <script src="/resources/js/application.js"></script>
+  <link rel="stylesheet" href="/resources/libs/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/resources/css/fonts.css">
+  <link rel="stylesheet" href="/resources/css/main/header.css">
+  <link rel="stylesheet" href="/resources/css/main/content.css">
+  <link rel="stylesheet" href="/resources/css/main/footer.css">
+  <link rel="stylesheet" href="/resources/css/list/list.css">
+</head>
+<body>
+  <style>
+
+    * {
+      font-family: 'Roboto Slab', serif;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    body {
+      padding-top: 20px;
+    }
+    
+  </style>
+
+  <!-- шапка -->
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".js-navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="padding-right:100px; margin-left:25px;">Galaxy</a>
+      </div>
+      <div class="collapse navbar-collapse js-navbar">
+        <ul class="nav navbar-nav">
+          <li id="main"><a href="/main">Главная</a></li>
+          <li class="dropdown">
+            <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Меню
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/main/add-order">Создать новый заказ</a></li>
+              <li><a href="/main/update-order">Редактировать данные заказа</a></li>
+              <li class="divider"></li>
+              <li><a href="/main/add-product">Добавить товар в заказ</a></li>
+              <li><a href="/main/update-product">Редактировать данные товара в заказе</a></li>
+              <li class="divider"></li>
+              <li><a href="/main/list">Посмотреть список всех товаров агентства</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="margin-right:25px;">
+          <li id="logout"><a href="/logout">Выйти</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- контент -->
+
+  <div class="container-fluid">
+    <div class="container">
+      <div id="user-info">
+        <div class="container-fluid">
+
+        </div>
+      </div>
+      <div id="application-interface" ng-controller="ControllerAgency">
+        <div class="order">
+          <div id="block">
+            <div id="order-info">
+              <div class="text-center">
+                <p>Информация о всех возможных товарах агентства</p>
+              </div>
+            </div>
+            <div class="row text-center" >
+              <div class="col-md-12">
+                <!-- медиабаинг -->
+                <div class="product">
+                  <p class="name-product">Наименование товара</p>
+                  <p class="name">Медиабаинг</p>
+                  <p class="description-product">Описание товара</p>
+                  <p class="description">Закупка рекламных пространств во всех намеченных в медиаплане носителях рекламы.</p>
+                  <p class="price-product">Стоимость товара</p>
+                  <p class="price">15000</p>
+                </div>
+                <hr>
+                <!-- позиционирование торговой марки -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Позиционироание торговой марки</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Поиск того, почему потребитель должен
+                        выбрать именно этот продукт и доступным языком
+                        рассказать об этом потребителю с целью представления
+                        строго определенной выгоды, которая устойчиво ассоциировалось
+                        бы в его сознании с данным продуктом, данной торговой маркой.
+                    </p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">10000</p>
+                </div>
+                <hr>
+                <!-- фирменный стиль -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p> 
+                    <p class="name">Разработка фирменного стиля или корпоративной идентификации</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Графические элементы, которые будут являться как бы портретными чертами фирмы.
+                            Цвета логотипа, размещение адресного блока, размер знака на
+                            фасаде здания, одежда персонала – на все вопросы есть
+                            ответ в «бренд-буке» - настольной книги менеджера по рекламе.
+                    </p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">13000</p>
+                </div>
+                <hr>
+                <!-- упаковка -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Дизайн упаковки товара</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Разработка индивидуального вида упаковки товара.</p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">6000</p>
+                </div>
+                <hr>
+                <!-- визитная карточка -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Дизайна визитной карточки</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Разработка индивидуального дизайна визитной карточки размером 100x100 мм.</p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">7000</p>
+                </div>
+                <hr>
+                <!-- транспорт -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Реклама на транспорте</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Разработка рекламы на бортах маршрутных такси, трамваях, троллейбусах.</p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">15000</p>
+                </div>
+                <hr>
+                <!-- билет -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Реклама на билетах транспорта</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Размещение рекламы на оборотной стороне билета автобусов.</p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">7000</p>
+                </div>
+                <hr>
+                <!-- жкх -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Реклама на квитанциях ЖКХ</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Размещение рекламы на квитанциях ЖКХ.</p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">9000</p>
+                </div>
+                <hr>
+                <!-- печать -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Широкоформатная печать</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Печать изображения на широкоформатном струйном плоттере с размерами от А4 до А1.</p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">11000</p>
+                </div>
+                <hr>
+                <!-- сувенир -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Сувенирная продукция</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Сувенирная продукция, сувениры с символикой фирмы, асессуары с логотипом компании.</p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">4000</p>
+                </div>
+                <hr>
+                <!-- тенты -->
+                <div class="product">
+                    <p class="name-product">Наименование товара</p>
+                    <p class="name">Изготовление тентов</p>
+                    <p class="description-product">Описание товара</p>
+                    <p class="description">Изготовление автомобильных тентов на любые машины и печать рекламы на них.</p>
+                    <p class="price-product">Стоимость товара</p>
+                    <p class="price">16000</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- футер -->
+
+  <footer class="blog-footer">
+    <ul>
+      <li><p>&copy; 2017 Galaxy Inc.</p></li>
+      <li><img src="/resources/img/ico.png" alt=""></li>
+    </ul>
+  </footer>
+</body>
+</html>

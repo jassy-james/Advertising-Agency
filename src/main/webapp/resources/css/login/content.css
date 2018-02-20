@@ -1,0 +1,67 @@
+body {
+  margin:0;
+  padding:0;
+  background: #7c4dff;
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 18px;
+  /* color: rgb(0, 0, 0); */
+}
+#block {
+  width:400px; /*Ширина блока*/
+  height:270px; /*Высота блока*/
+  margin:0 auto;
+  overflow:visible;
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin-left:-200px; /*Смещаем блок на половину всей ширины влево*/
+  margin-top:-100px; /*Смещаем блок на половину высоты вверх*/
+  background:#fafafa;
+  border-radius: 3px;
+  box-shadow: 0 0 30px black;
+}
+
+.container {
+  padding-top: 15px;
+}
+
+.btn {
+  margin-top: 15px;
+  background: #24f8a0;
+  border-color: #24f8a0;
+  border-radius: 5px;
+}
+
+.btn:hover, .btn:focus, .btn:visited  {
+  background: #7c4dff;
+  border-color: #7c4dff;
+  color: #fafafa;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.btn:active {
+  box-shadow: 0 0 2px #7c4dff;
+}
+
+.main {
+  height:100%;
+}
+.main_in_main {
+  height:100%;
+}
+.content {
+  padding-top: 0px;
+  height: 270px;
+}
+
+.container-fluid {
+  padding-top: 20px;
+}
+
+#container-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: #24f8a0;
+  border: 1px solid #24f8a0;
+  border-radius: 3px;
+}

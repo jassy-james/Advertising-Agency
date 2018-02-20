@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AgencyApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Добавление товаров в заказ</title>
+  <link rel="shortcut icon" href="/resources/img/ico.png" type="image/png">
+
+  <script src="/resources/libs/js/jquery-2.1.0.js"></script>
+  <script src="/resources/libs/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/resources/libs/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/resources/css/fonts.css">
+  <link rel="stylesheet" href="/resources/css/main/header.css">
+  <link rel="stylesheet" href="/resources/css/product/content.css">
+  <link rel="stylesheet" href="/resources/css/base/footer-fixed.css">
+</head>
+<body>
+<style>
+  * {
+    font-family: 'Roboto Slab', serif;
+  }
+        
+  button {
+    cursor: pointer;
+  }
+        
+  body {
+    padding-top: 20px;
+  }
+            
+  </style>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".js-navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="padding-right:100px; margin-left:25px;">Galaxy</a>
+      </div>
+      <div class="collapse navbar-collapse js-navbar">
+        <ul class="nav navbar-nav">
+          <li id="main"><a href="/main">Главная</a></li>
+          <li class="dropdown">
+            <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Меню
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/main/add-order">Создать новый заказ</a></li>
+              <li><a href="/main/update-order">Редактировать данные заказа</a></li>
+              <li class="divider"></li>
+              <li><a href="/main/add-product">Добавить товар в заказ</a></li>
+              <li><a href="/main/update-product">Редактировать данные товара в заказе</a></li>
+              <li class="divider"></li>
+              <li><a href="/main/list">Посмотреть список всех товаров агентства</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="margin-right:25px;">
+          <li id="logout"><a href="/logout">Выйти</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div ng-controller="ControllerAgency" id="block">
+    <div class="container">
+      <div id="add-product-form">
+        <div id="info">
+          <span>Форма добавления товара в заказ</span>
+        </div>
+        <div class="container-fluid" ng-controller="ControllerAgency">
+          <div class="form-group">
+            <label>Наименование</label>
+            <input type="text" class="form-control" ng-model="name" placeholder="Наименование товара">
+          </div>
+          <div class="form-group">
+            <label>Цена</label>
+            <input type="text" class="form-control" ng-model="cost"  placeholder="Цена товара">
+          </div>
+          <div class="form-group">
+            <label >Описание</label>
+            <input type="text" class="form-control" ng-model="description"  placeholder="Описание товара">
+          </div>
+          <div class="form-group">
+            <label>Идентификатор</label>
+            <input type="text" class="form-control" ng-model="id" placeholder="Идентификатор заказа">
+          </div>
+          <button type="submit" class="btn btn-success" ng-click="addProduct()">Добавить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- футер -->
+
+  <footer class="blog-footer">
+    <ul>
+      <li><p>&copy; 2017 Galaxy Inc.</p></li>
+      <li><img src="/resources/img/ico.png" alt=""></li>
+    </ul>
+  </footer>
+  
+  <script src="/resources/libs/js/angular.js"></script>
+  <script src="/resources/js/application.js"></script>
+</body>
+</html>

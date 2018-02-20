@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AgencyApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Учет заказов в рекламном агентстве</title>
+  <link rel="shortcut icon" href="/resources/img/ico.png" type="image/png">
+  <script src="/resources/libs/js/pdfmake.min.js"></script>
+  <script src="/resources/libs/js/vfs_fonts.js"></script>
+  <script src="/resources/libs/js/angular.js"></script>
+  <script src="/resources/libs/js/jquery-2.1.0.js"></script>
+  <script src="/resources/libs/js/bootstrap.min.js"></script>
+  <script src="/resources/js/jquery-scripts.js"></script>
+  <script src="/resources/js/application.js"></script>
+  <link rel="stylesheet" href="/resources/libs/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/resources/css/fonts.css">
+  <link rel="stylesheet" href="/resources/css/main/header.css">
+  <link rel="stylesheet" href="/resources/css/main/content.css">
+  <link rel="stylesheet" href="/resources/css/main/footer.css">
+</head>
+<body>
+  <style>
+
+    * {
+      font-family: 'Roboto Slab', serif;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    body {
+      padding-top: 20px;
+    }
+    
+  </style>
+
+  <!-- шапка -->
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".js-navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="padding-right:100px; margin-left:25px;">Galaxy</a>
+      </div>
+      <div class="collapse navbar-collapse js-navbar">
+        <ul class="nav navbar-nav">
+          <li id="main"><a href="/main">Главная</a></li>
+          <li class="dropdown">
+            <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Меню
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/main/add-order">Создать новый заказ</a></li>
+              <li><a href="/main/update-order">Редактировать данные заказа</a></li>
+              <li class="divider"></li>
+              <li><a href="/main/add-product">Добавить товар в заказ</a></li>
+              <li><a href="/main/update-product">Редактировать данные товара в заказе</a></li>
+              <li class="divider"></li>
+              <li><a href="/main/list">Посмотреть список всех товаров агентства</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="margin-right:25px;">
+          <li id="logout"><a href="/logout">Выйти</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- контент -->
+
+  <div class="container-fluid">
+    <div class="container">
+      <div id="user-info">
+        <div class="container-fluid">
+
+        </div>
+      </div>
+      <div id="application-interface" ng-controller="ControllerAgency">
+        <div class="order">
+          <div id="block">
+            <div id="order-info">
+              <div class="text-center">
+                <p>Информация о заказах</p>
+              </div>
+            </div>
+            <div class="row" >
+              <div class="col-md-12">
+                <p class="text-center">Введите идентификатор заказа для поиска</p>
+                <input type="text" id="filter" ng-model="query" class="form-control" placeholder="Идентификатор заказа">
+                <form class="order-list" ng-repeat="order in orders | filter: {id:query}">
+                  <h3><strong>Идентификатор заказа: </strong><span ng-bind="order.id"></span></h3>
+                  <p>Статус: <span ng-bind="order.status"></span></p>
+                  <h3><strong>Список товаров: </strong><span></span></h3>
+                  <div class="product-item" ng-repeat="product in order.products">
+                    <p>идентификатор: <span ng-bind="product.id"></span></p>
+                    <p>наименование: <span ng-bind="product.name"></span></p>
+                    <p>стоимость: <span ng-bind="product.cost"></span></p>
+                    <p>описание: <span ng-bind="product.description"></span></p>
+                    <button type="submit" class="btn btn-warning" ng-click="deleteProduct(product.id)">Удалить товар</button>
+                    <hr>
+                  </div>
+                  <h3><strong>Информация о клиенте: </strong></h3>
+                  <p>ФИО: <span ng-bind="order.client.surname"></span> <span ng-bind="order.client.name"></span> <span ng-bind="order.client.patronymic"></span></p>
+                  <p>контактная информация: <span ng-bind="order.client.info"></span></p>
+                  <h3><strong>Информация об исполнителе: </strong><span></span></h3>
+                  <p>ФИО: <span ng-bind="order.employee.surname"></span> <span ng-bind="order.employee.name"></span> <span ng-bind="order.employee.patronymic"> </span></p>
+                  <p>должность: <span ng-bind="order.employee.post"></span></p>
+                  <p>контактный номер: <span ng-bind="order.employee.phoneNumber"></span></p>
+                  <h3><strong>Стоимость заказа: </strong><span ng-bind="order.summ"></span></h3>
+                  <button type="button" class="btn btn-danger btn-lg" ng-click="deleteOrder(order.id)">Удалить заказ</button>
+                  <button type="submit" class="btn btn-info btn-lg" ng-click="documentOrder(order)">Составить договор</button>
+                  <hr>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- футер -->
+
+  <footer class="blog-footer">
+    <ul>
+      <li><p>&copy; 2017 Galaxy Inc.</p></li>
+      <li><img src="/resources/img/ico.png" alt=""></li>
+    </ul>
+  </footer>
+</body>
+</html>

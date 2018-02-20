@@ -1,0 +1,66 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: "org.akhikhl.gretty"
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.1'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+ext {
+	spring_version = '4.3.3.RELEASE'
+	spring_jpa = '1.10.1.RELEASE'
+	jstl_version = '1.2'
+	servlet_api = '3.0.1'
+	jackson = '2.7.5'
+}
+
+dependencies {
+	//зависимость для базы данных h2
+	compile 'com.h2database:h2:1.4.196'
+	//зависимость для hibernate
+	compile 'org.hibernate:hibernate-core:5.2.6.Final'
+	//Spring зависимости
+	compile("org.springframework:spring-core:${spring_version}")
+	compile("org.springframework:spring-web:${spring_version}")
+	compile("org.springframework:spring-webmvc:${spring_version}")
+	compile("org.springframework.data:spring-data-jpa:${spring_jpa}")
+	compile("javax.servlet:jstl:${jstl_version}")
+	providedCompile("javax.servlet:javax.servlet-api:${servlet_api}")
+	compile 'org.slf4j:slf4j-nop:1.7.13'
+
+	//Jackson mapping
+	compile("com.fasterxml.jackson.core:jackson-databind:${jackson}")
+	compile("com.fasterxml.jackson.core:jackson-core:${jackson}")
+	compile("com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jackson}")
+
+	//Spring Security
+	compile 'org.springframework.security:spring-security-web:4.2.3.RELEASE'
+	compile 'org.springframework.security:spring-security-config:4.2.3.RELEASE'
+
+}
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		classpath "org.akhikhl.gretty:gretty:1.4.0"
+	}
+}
+
+gretty {
+	servletContainer='tomcat8'
+	port = 8080
+	contextPath = '/'
+}
+
+//gradle appRun - запуск сервера
+//gradle appStop - остановка сервера
+
+

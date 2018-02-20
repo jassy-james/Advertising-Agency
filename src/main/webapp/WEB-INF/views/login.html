@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AgencyApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Учет заказов в рекламном агентстве</title>
+    <link rel="stylesheet" href="/resources/libs/css/bootstrap.min.css">
+    <link href="/resources/css/fonts.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/resources/img/rocket.png" type="image/png">
+    <link rel="stylesheet" href="/resources/css/header.css">
+    <link rel="stylesheet" href="/resources/css/login/content.css">
+    <link rel="stylesheet" href="/resources/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<style>
+  * {
+    font-family: 'Roboto Slab', serif;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  .input-error {
+    font-size: 15px;
+    color: red;
+  }
+
+  .form-control-feedback {
+    padding-top: 7px;
+  }
+
+</style>
+<div id="block" align="center">
+  <div class="main">
+    <div class="main_in_main">
+      <div class="content" ng-controller="LoginController">
+        <div id="container-header">
+          <h4>Форма авторизации</h4>
+        </div>
+        <div class="container-fluid">
+          <form action="/login" method="post" name="dataForm" id="form" data-toggle="validator">
+            <div class="form-group">
+              <label class="control-label" for="username">Логин</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                <input type="text" name="username" id="username" ng-model="data.username" class="form-control" placeholder="Логин" required>
+                <span class="form-control-feedback" aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="username">Пароль</label>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                <input type="password" name="password" id="password" ng-model="data.password" class="form-control" placeholder="Пароль" required>
+                <span class="form-control-feedback" aria-hidden="true"></span>
+              </div>
+              <button type="submit" class="btn" ng-click="login(data, dataForm)">Войти</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/resources/libs/js/angular.js"></script>
+<script src="/resources/js/application.js"></script>
+<script src="/resources/libs/js/jquery-2.1.0.js"></script>
+<script src="/resources/libs/js/validator.min.js"></script>
+<script src="/resources/js/valid.js"></script>
+<script src="/resources/libs/js/bootstrap.min.js"></script>
+</body>
+</html>
